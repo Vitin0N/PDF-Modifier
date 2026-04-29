@@ -24,9 +24,12 @@ class AppWindow(QMainWindow):
 
         self.homeBtn = QPushButton('Home')
         self.mergeBtn = QPushButton('Merge PDFs')
+        self.extractBtn = QPushButton('Extract Pages')
 
         menuLayout.addWidget(self.homeBtn)
+        menuLayout.addSpacing(50)
         menuLayout.addWidget(self.mergeBtn)
+        menuLayout.addWidget(self.extractBtn)
         menuLayout.addStretch()
 
         self.stackWidget = QStackedWidget()

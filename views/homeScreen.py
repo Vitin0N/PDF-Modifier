@@ -1,5 +1,8 @@
 from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel
+    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
+)
+from PySide6.QtGui import (
+    QIcon
 )
 from PySide6.QtCore import Qt
 
@@ -8,9 +11,36 @@ class HomeView(QWidget):
         super().__init__()
 
         layout = QVBoxLayout(self)
+        layout.setSpacing(5)
+        layout.setContentsMargins(0, 0, 0, 0)
 
-        text = QLabel('Welcome to PDF Modifier!\nSelect a process to continue.')
+        textTitle = QLabel('Welcome to PDF Modifier!')
+        textTitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        textTitle.setStyleSheet("font-size: 30px;")
 
-        text.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        textSub = QLabel("Select a process to continue.")
+        textSub.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        textSub.setStyleSheet("font-size: 20px;")
 
-        layout.addWidget(text)
+        buttonContainer = QWidget()
+        buttonLayout = QHBoxLayout(buttonContainer)
+        buttonLayout.setSpacing(5)
+
+        mergeBtn = QPushButton("Merge")
+        splitBtn = QPushButton("Split")
+        extractBtn = QPushButton("Extract")
+        deleteBtn = QPushButton("Delete")
+
+        for btn in [mergeBtn, splitBtn, deleteBtn, extractBtn]:
+            btn.setStyleSheet("padding: 10px; min-width: 80px")
+
+        buttonLayout.addWidget(mergeBtn)
+        buttonLayout.addWidget(splitBtn)
+        buttonLayout.addWidget(extractBtn)
+        buttonLayout.addWidget(deleteBtn)
+
+        layout.addStretch()
+        layout.addWidget(textTitle)
+        layout.addWidget(textSub)
+        layout.addWidget(buttonContainer, alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addStretch()
