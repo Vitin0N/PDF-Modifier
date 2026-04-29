@@ -4,9 +4,14 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import (
     QIcon
 )
-from PySide6.QtCore import Qt
+from PySide6.QtCore import (
+    Qt, Signal
+)
 
 class HomeView(QWidget):
+    mergeClicked = Signal()
+    extractCicked = Signal()
+
     def __init__(self):
         super().__init__()
 
@@ -26,10 +31,14 @@ class HomeView(QWidget):
         buttonLayout = QHBoxLayout(buttonContainer)
         buttonLayout.setSpacing(5)
 
+
         mergeBtn = QPushButton("Merge")
         splitBtn = QPushButton("Split")
         extractBtn = QPushButton("Extract")
         deleteBtn = QPushButton("Delete")
+
+        mergeBtn.clicked.connect(self.mergeClicked.emit)
+        extractBtn.clicked.connect(self.extractCicked.emit)
 
         for btn in [mergeBtn, splitBtn, deleteBtn, extractBtn]:
             btn.setStyleSheet("padding: 10px; min-width: 80px")

@@ -45,6 +45,10 @@ class AppWindow(QMainWindow):
 
         self.homeBtn.clicked.connect(self.showHomeScreen)
         self.mergeBtn.clicked.connect(self.showMergeScreen)
+        self.extractBtn.clicked.connect(self.showExtractScreen)
+
+        self.homeScreen.mergeClicked.connect(self.showMergeScreen)
+        self.homeScreen.extractCicked.connect(self.showExtractScreen)
 
     def showHomeScreen(self):
         print('home screen')
@@ -53,3 +57,6 @@ class AppWindow(QMainWindow):
     def showMergeScreen(self):
         print('merge srcreen')
         self.stackWidget.setCurrentIndex(1)
+    
+    def showExtractScreen(self):
+        print("Extract Screen")
